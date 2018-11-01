@@ -82,12 +82,12 @@ def calculate_bill(member_id=None, account_id=None, bill_date=None,  utility_typ
 
     if member_information is not None:
         # Retrieve Account Information
+        # TODO get all account ids
         if account_id == 'ALL':
             account_id = list(member_information[0].keys())[0]
 
         account_information = member_information[0].get(account_id) or None
         if account_information is not None:
-            # TODO get all account ids
             # Check for electricity
             electricy_information = account_information[0].get(utility_type) or None
 
@@ -96,8 +96,9 @@ def calculate_bill(member_id=None, account_id=None, bill_date=None,  utility_typ
                 amount, kwh = calculate_total_amount_and_kwh_usage(electricy_information,
                                                                              utility_type=utility_type,
                                                                              date=bill_date)
-
                 return amount, kwh
+
+            # TODO same for Gas
 
     amount = 0
     kwh = 0

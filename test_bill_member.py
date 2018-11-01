@@ -17,6 +17,19 @@ class TestBillMember(unittest.TestCase):
         self.assertEqual(amount, 27.57)
         self.assertEqual(kwh, 167)
 
+    def test_calculate_bill_for_august_with_account_id(self):
+        amount, kwh = calculate_bill(member_id='member-123',
+                                     account_id='account-abc',
+                                     bill_date='2017-08-31')
+        self.assertEqual(amount, 27.57)
+        self.assertEqual(kwh, 167)
+
+    def test_calculate_bill_for_april_with_account_id(self):
+        amount, kwh = calculate_bill(member_id='member-123',
+                                     account_id='account-abc',
+                                     bill_date='2017-04-15')
+        self.assertEqual(amount, 25.07)
+        self.assertEqual(kwh, 179)
 
     def test_calculate_dayly_cost_for_tariff(self):
         month = '2017-08-31'
